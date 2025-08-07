@@ -6,7 +6,34 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 40px;
+      margin: 0;
+      background-color: #fff;
+    }
+
+    .flag-banner {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(to right, rgba(255,153,51,0.5), rgba(255,255,255,0.5), rgba(19,136,8,0.5));
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .title {
+      position: fixed;
+      top: 100px;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #000;
+      z-index: 1;
+    }
+
+    .container {
+      margin-top: 340px;
+      padding: 40px;
     }
 
     .tab-buttons {
@@ -34,6 +61,7 @@
       padding: 20px;
       border: 1px solid #ccc;
       border-top: none;
+      background-color: rgba(255, 255, 255, 0.9);
     }
 
     .tab-content.active {
@@ -49,23 +77,29 @@
 </head>
 <body>
 
-  <h1>Welcome to the National Integration Park</h1>
-
-  <div class="tab-buttons">
-    <button class="tab-link" onclick="openTab(event, 'home')">Home</button>
-    <button class="tab-link" onclick="openTab(event, 'about')">About</button>
-    <button class="tab-link" onclick="openTab(event, 'videos')">Videos</button>
+<div class="flag-banner">
+  <div style="display: flex; justify-content: space-between; align-items: center; height: 200px; padding: 0 40px;">
+    <h1 style="margin: 0; font-size: 36px; color: white;">Welcome to the National Integration Park</h1>
+    <img src="Aseem LOGO with text.jpg" alt="ASEEM Logo" style="height: 120px; object-fit: contain;">
   </div>
+</div>
 
-  <div id="home" class="tab-content">
-    <h2>Home</h2>
-    <p>What if a park could change how we see our country… and each other?
+  <div class="container">
+    <div class="tab-buttons">
+      <button class="tab-link" onclick="openTab(event, 'home')">Home</button>
+      <button class="tab-link" onclick="openTab(event, 'about')">About</button>
+      <button class="tab-link" onclick="openTab(event, 'videos')">Videos</button>
+    </div>
+
+    <div id="home" class="tab-content">
+      <h2>Home</h2>
+      <p>What if a park could change how we see our country… and each other?
 The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
-  </div>
+    </div>
 
-  <div id="about" class="tab-content">
-    <h2>About</h2>
-    <p>A Living Tribute to Bravery
+    <div id="about" class="tab-content">
+      <h2>About</h2>
+      <p>A Living Tribute to Bravery
 At Thunder Park & Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest.
 Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.
 Cultural Center - India in a Circle
@@ -83,22 +117,23 @@ Here, heroes are remembered.
 Here, India breathes as one.
 Welcome to the National Integration Park.
 Where learning meets patriotism, and diversity becomes our strength.</p>
-  </div>
+    </div>
 
-  <div id="videos" class="tab-content">
-    <h2>Videos</h2>
-    <video width="640" height="360" controls>
-      <source src="NIP1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video width="640" height="360" controls>
-      <source src="video2.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video width="640" height="360" controls>
-      <source src="video3.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div id="videos" class="tab-content">
+      <h2>Videos</h2>
+      <video width="640" height="360" controls>
+        <source src="NIP1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video width="640" height="360" controls>
+        <source src="video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video width="640" height="360" controls>
+        <source src="video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 
   <script>
