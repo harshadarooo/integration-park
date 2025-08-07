@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to the National Integration Park</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 2px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .tab-link {
+      background-color: #f1f1f1;
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .tab-link.active {
+      background-color: #ccc;
+      font-weight: bold;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    video {
+      display: block;
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the National Integration Park</h1>
+
+  <div class="tab-buttons">
+    <button class="tab-link" onclick="openTab(event, 'home')">Home</button>
+    <button class="tab-link" onclick="openTab(event, 'about')">About</button>
+    <button class="tab-link" onclick="openTab(event, 'videos')">Videos</button>
+  </div>
+
+  <div id="home" class="tab-content">
+    <h2>Home</h2>
+    <p>What if a park could change how we see our country… and each other?
+The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
+  </div>
+
+  <div id="about" class="tab-content">
+    <h2>About</h2>
+    <p>A Living Tribute to Bravery
+At Thunder Park & Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest.
+Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.
+Cultural Center - India in a Circle
+Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya.
+Taste. Touch. Listen. Learn.
+Celebrate India’s diversity in a way that builds understanding and pride.
+Not Just Exhibits but Real Conversations
+Our volunteers guide youth through stories of real people, real lands, and real struggles.
+Assumptions fall away. Respect takes root.
+This is where curiosity meets connection.
+This Park is a reflection of the belief that unity can be built by knowing each other better.
+It’s a space that inspires empathy, patriotism, and purpose.
+A Gift to the Youth. A Promise to the Nation.
+Here, heroes are remembered.
+Here, India breathes as one.
+Welcome to the National Integration Park.
+Where learning meets patriotism, and diversity becomes our strength.</p>
+  </div>
+
+  <div id="videos" class="tab-content">
+    <h2>Videos</h2>
+    <video width="640" height="360" controls>
+      <source src="NIP1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video width="640" height="360" controls>
+      <source src="video2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video width="640" height="360" controls>
+      <source src="video3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    function openTab(evt, tabId) {
+      const contents = document.getElementsByClassName("tab-content");
+      const buttons = document.getElementsByClassName("tab-link");
+
+      for (let content of contents) {
+        content.classList.remove("active");
+      }
+
+      for (let btn of buttons) {
+        btn.classList.remove("active");
+      }
+
+      const activeTab = document.getElementById(tabId);
+      if (activeTab) {
+        activeTab.classList.add("active");
+        evt.currentTarget.classList.add("active");
+      }
+    }
+
+    // Set default tab on load
+    window.onload = function () {
+      document.querySelector('.tab-link').click();
+    };
+  </script>
+
+</body>
+</html>
