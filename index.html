@@ -10,8 +10,6 @@
       background-color: #fafafa;
       color: #333;
     }
-
-    /* --- Login Overlay --- */
     .login-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -23,7 +21,6 @@
       z-index: 1000;
       animation: fadeIn 0.6s ease-in-out;
     }
-
     .login-box {
       background: #fff;
       padding: 30px 40px;
@@ -32,12 +29,10 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
       animation: slideUp 0.5s ease;
     }
-
     .login-box h2 {
       margin-bottom: 20px;
       color: #1a1a1a;
     }
-
     .login-box input {
       margin: 8px 0;
       padding: 12px;
@@ -47,12 +42,10 @@
       border-radius: 6px;
       transition: border-color 0.3s ease;
     }
-
     .login-box input:focus {
       outline: none;
       border-color: #28a745;
     }
-
     .login-box button {
       margin-top: 12px;
       width: 100%;
@@ -65,12 +58,9 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
     .login-box button:hover {
       background: linear-gradient(135deg, #218838, #28a745);
     }
-
-    /* --- Flag Banner --- */
     .flag-banner {
       width: 100%;
       height: 300px;
@@ -79,7 +69,6 @@
       top: 0; left: 0;
       z-index: -1;
     }
-
     .title {
       position: fixed;
       top: 100px;
@@ -90,8 +79,6 @@
       color: #222;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     }
-
-    /* --- Main Container --- */
     .container {
       margin-top: 340px;
       padding: 20px;
@@ -99,8 +86,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-
-    /* --- Tabs --- */
     .tab-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -108,7 +93,6 @@
       margin-bottom: 20px;
       gap: 5px;
     }
-
     .tab-link {
       flex: 1;
       background-color: #f5f5f5;
@@ -120,13 +104,11 @@
       transition: background-color 0.3s ease;
       border-radius: 6px 6px 0 0;
     }
-
     .tab-link.active {
       background-color: #28a745;
       color: white;
       font-weight: bold;
     }
-
     .tab-content {
       display: none;
       padding: 20px;
@@ -135,11 +117,9 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       animation: fadeIn 0.4s ease;
     }
-
     .tab-content.active {
       display: block;
     }
-
     video {
       display: block;
       margin-bottom: 20px;
@@ -147,19 +127,14 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-
-    /* --- Animations --- */
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
     }
-
     @keyframes slideUp {
       from {transform: translateY(30px); opacity: 0;}
       to {transform: translateY(0); opacity: 1;}
     }
-
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       .title {
         font-size: 26px;
@@ -180,8 +155,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Login Overlay -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
       <h2>Please Login</h2>
@@ -191,78 +164,231 @@
       <p id="loginError" style="color: red; display: none;">Invalid credentials. Try again.</p>
     </div>
   </div>
-
-  <!-- Banner -->
   <div class="flag-banner"></div>
   <div class="title">Welcome to the National Integration Park</div>
-
-  <!-- Main Content -->
   <div class="container" id="mainContent" style="display: none;">
     <div class="tab-buttons">
       <button class="tab-link" onclick="openTab(event, 'home')">Home</button>
       <button class="tab-link" onclick="openTab(event, 'about')">About</button>
-      <button class="tab-link" onclick="openTab(event, 'videos')">Videos</button>
+      <button class="tab-link" onclick="openTab(event, 'raysofhope')">Rays Of Hope</button>
     </div>
-
     <div id="home" class="tab-content">
       <h2>Home</h2>
-      <p>What if a park could change how we see our country… and each other?
-      The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
+      <p>What if a park could change how we see our country… and each other? The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
     </div>
-
     <div id="about" class="tab-content">
       <h2>About</h2>
-      <p><strong>A Living Tribute to Bravery</strong><br>
-      At Thunder Park & Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest.
-      Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.</p>
-      <p><strong>Cultural Center - India in a Circle</strong><br>
-      Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya.
-      Taste. Touch. Listen. Learn.</p>
-      <p><strong>Not Just Exhibits but Real Conversations</strong><br>
-      Our volunteers guide youth through stories of real people, real lands, and real struggles.
-      Assumptions fall away. Respect takes root.</p>
-      <p>This Park is a reflection of the belief that unity can be built by knowing each other better.
-      It’s a space that inspires empathy, patriotism, and purpose.</p>
+      <p><strong>A Living Tribute to Bravery</strong><br>At Thunder Park & Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest. Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.</p>
+      <p><strong>Cultural Center - India in a Circle</strong><br>Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya. Taste. Touch. Listen. Learn.</p>
+      <p><strong>Not Just Exhibits but Real Conversations</strong><br>Our volunteers guide youth through stories of real people, real lands, and real struggles. Assumptions fall away. Respect takes root.</p>
+      <p>This Park is a reflection of the belief that unity can be built by knowing each other better. It’s a space that inspires empathy, patriotism, and purpose.</p>
+    </div>
+    <div id="raysofhope" class="tab-content">
+  <h2>Rays Of Hope</h2>
+  <div class="rays-grid">
+
+    <!-- 1947-48 -->
+    <div class="rays-section">
+      <button class="collapsible">1947-48</button>
+      <div class="content">
+        <video controls>
+          <source src="1947-48-background.mp4" type="video/mp4">
+        </video>
+        <h4>Major Somnath Sharma</h4>
+        <video controls>
+          <source src="somnath-sharma.mp4" type="video/mp4">
+        </video>
+        <h4>Naik Jadunath Singh</h4>
+        <video controls>
+          <source src="jadunath-singh.mp4" type="video/mp4">
+        </video>
+        <h4>2/Lt. Rama Raghoba Rane</h4>
+        <video controls>
+          <source src="rama-raghoba-rane.mp4" type="video/mp4">
+        </video>
+        <h4>CHM Piru Singh Shekhawat</h4>
+        <video controls>
+          <source src="piru-singh.mp4" type="video/mp4">
+        </video>
+        <h4>Lance Naik Karam Singh</h4>
+        <video controls>
+          <source src="karam-singh.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
 
-    <div id="videos" class="tab-content">
-      <h2>Videos</h2>
-      <video controls>
-        <source src="NIP1.mp4" type="video/mp4">
-      </video>
-      <video controls>
-        <source src="video2.mp4" type="video/mp4">
-      </video>
-      <video controls>
-        <source src="video3.mp4" type="video/mp4">
-      </video>
+    <!-- 1962 -->
+    <div class="rays-section">
+      <button class="collapsible">1962</button>
+      <div class="content">
+        <video controls>
+          <source src="1962-background.mp4" type="video/mp4">
+        </video>
+        <h4>Major Dhan Singh Thapa</h4>
+        <video controls>
+          <source src="dhan-singh-thapa.mp4" type="video/mp4">
+        </video>
+        <h4>Subedar Joginder Singh</h4>
+        <video controls>
+          <source src="joginder-singh.mp4" type="video/mp4">
+        </video>
+        <h4>Major Shaitan Singh</h4>
+        <video controls>
+          <source src="shaitan-singh.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
+
+    <!-- 1965 -->
+    <div class="rays-section">
+      <button class="collapsible">1965</button>
+      <div class="content">
+        <video controls>
+          <source src="1965-background.mp4" type="video/mp4">
+        </video>
+        <h4>CQMH Abdul Hamid</h4>
+        <video controls>
+          <source src="abdul-hamid.mp4" type="video/mp4">
+        </video>
+        <h4>Lt. Col. Ardeshir Burzorji Tarapore</h4>
+        <video controls>
+          <source src="tarapore.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- 1971 -->
+    <div class="rays-section">
+      <button class="collapsible">1971</button>
+      <div class="content">
+        <video controls>
+          <source src="1971-background.mp4" type="video/mp4">
+        </video>
+        <h4>Lance Naik Albert Ekka</h4>
+        <video controls>
+          <source src="albert-ekka.mp4" type="video/mp4">
+        </video>
+        <h4>Flying Officer Nirmal Jit Singh Sekhon</h4>
+        <video controls>
+          <source src="nirmal-jit-singh.mp4" type="video/mp4">
+        </video>
+        <h4>2/Lt. Arun Khetrapal</h4>
+        <video controls>
+          <source src="arun-khetrapal.mp4" type="video/mp4">
+        </video>
+        <h4>Major Hoshiar Singh</h4>
+        <video controls>
+          <source src="hoshiar-singh.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- 1999 -->
+    <div class="rays-section">
+      <button class="collapsible">1999</button>
+      <div class="content">
+        <video controls>
+          <source src="1999-background.mp4" type="video/mp4">
+        </video>
+        <h4>Lt. Manoj Kumar Pandey</h4>
+        <video controls>
+          <source src="manoj-pandey.mp4" type="video/mp4">
+        </video>
+        <h4>Grenadier Yogendra Singh Yadav</h4>
+        <video controls>
+          <source src="yogendra-yadav.mp4" type="video/mp4">
+        </video>
+        <h4>Rifleman Sanjay Kumar</h4>
+        <video controls>
+          <source src="sanjay-kumar.mp4" type="video/mp4">
+        </video>
+        <h4>Capt. Vikram Batra</h4>
+        <video controls>
+          <source src="vikram-batra.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
   </div>
+</div>
 
+<style>
+.rays-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.rays-section {
+  flex: 1 1 calc(33.333% - 20px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.collapsible {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-size: 1.1em;
+  border-radius: 10px 10px 0 0;
+}
+
+.collapsible:hover {
+  background-color: darkred;
+}
+
+.content {
+  display: none;
+  padding: 10px;
+}
+
+.content h4 {
+  margin: 8px 0 4px;
+  font-size: 0.95em;
+}
+
+.content video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+</style>
+
+<script>
+document.querySelectorAll(".collapsible").forEach(button => {
+  button.addEventListener("click", () => {
+    const content = button.nextElementSibling;
+    content.style.display = (content.style.display === "block") ? "none" : "block";
+  });
+});
+</script>
+
+  </div>
   <script>
     function openTab(evt, tabId) {
       const contents = document.getElementsByClassName("tab-content");
       const buttons = document.getElementsByClassName("tab-link");
-
       for (let content of contents) {
         content.classList.remove("active");
       }
-
       for (let btn of buttons) {
         btn.classList.remove("active");
       }
-
       const activeTab = document.getElementById(tabId);
       if (activeTab) {
         activeTab.classList.add("active");
         evt.currentTarget.classList.add("active");
       }
     }
-
     function validateLogin() {
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
-
       if (username === 'guest' && password === 'park123') {
         document.getElementById('loginOverlay').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
@@ -272,11 +398,5 @@
       }
     }
   </script>
-
 </body>
 </html>
-
-
-
-
-
