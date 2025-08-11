@@ -1,404 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome to the National Integration Park</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>National Integration Park</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background-color: #fafafa;
-      color: #333;
-    }
-    .login-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    .login-box {
-      background: #fff;
-      padding: 30px 40px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      animation: slideUp 0.5s ease;
-    }
-    .login-box h2 {
-      margin-bottom: 20px;
-      color: #1a1a1a;
-    }
-    .login-box input {
-      margin: 8px 0;
-      padding: 12px;
-      width: 100%;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      transition: border-color 0.3s ease;
-    }
-    .login-box input:focus {
-      outline: none;
-      border-color: #28a745;
-    }
-    .login-box button {
-      margin-top: 12px;
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #28a745, #218838);
-      color: white;
-      font-size: 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .login-box button:hover {
-      background: linear-gradient(135deg, #218838, #28a745);
-    }
-    .flag-banner {
-      width: 100%;
-      height: 300px;
-      background: linear-gradient(to right, rgba(255,153,51,0.85), rgba(255,255,255,0.85), rgba(19,136,8,0.85));
-      position: fixed;
-      top: 0; left: 0;
-      z-index: -1;
-    }
-    .title {
-      position: fixed;
-      top: 100px;
-      width: 100%;
-      text-align: center;
-      font-size: 36px;
-      font-weight: bold;
-      color: #222;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-    }
-    .container {
-      margin-top: 340px;
-      padding: 20px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tab-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      border-bottom: 2px solid #ccc;
-      margin-bottom: 20px;
-      gap: 5px;
-    }
-    .tab-link {
-      flex: 1;
-      background-color: #f5f5f5;
-      border: none;
-      outline: none;
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      border-radius: 6px 6px 0 0;
-    }
-    .tab-link.active {
-      background-color: #28a745;
-      color: white;
-      font-weight: bold;
-    }
-    .tab-content {
-      display: none;
-      padding: 20px;
-      background-color: white;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      animation: fadeIn 0.4s ease;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    video {
-      display: block;
-      margin-bottom: 20px;
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    @keyframes slideUp {
-      from {transform: translateY(30px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-    @media (max-width: 768px) {
-      .title {
-        font-size: 26px;
-        top: 80px;
-      }
-      .flag-banner {
-        height: 200px;
-      }
-      .container {
-        margin-top: 240px;
-        padding: 15px;
-      }
-      .tab-link {
-        font-size: 14px;
-        padding: 10px;
-      }
-    }
+    /* --- Basic layout & typography --- */
+    :root{--green:#28a745;--green-dark:#218838;--red:#d32f2f;--red-dark:#b71c1c}
+    body{font-family: 'Segoe UI', Arial, sans-serif;margin:0;background:#fafafa;color:#222}
+
+    /* --- Login overlay --- */
+    .login-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1000}
+    .login-box{background:#fff;padding:28px 36px;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.25);width:360px;max-width:calc(100% - 40px)}
+    .login-box h2{margin:0 0 14px;font-size:20px}
+    .login-box input{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:6px;font-size:15px}
+    .login-box input:focus{outline:none;border-color:var(--green)}
+    .login-box button{width:100%;padding:12px;margin-top:8px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;border:none;border-radius:6px;cursor:pointer}
+
+    /* --- Banner/title --- */
+    .flag-banner{position:fixed;top:0;left:0;width:100%;height:300px;background:linear-gradient(to right,rgba(255,153,51,0.85),rgba(255,255,255,0.85),rgba(19,136,8,0.85));z-index:-1}
+    .title{position:fixed;top:100px;width:100%;text-align:center;font-size:36px;font-weight:700;color:#222;text-shadow:1px 1px 4px rgba(0,0,0,0.15)}
+
+    /* --- Container & tabs --- */
+    .container{margin-top:340px;padding:20px;max-width:1100px;margin-left:auto;margin-right:auto}
+
+    .tab-buttons{display:flex;gap:8px;border-bottom:2px solid #ddd;margin-bottom:18px}
+    .tab-buttons > button{flex:1;background:#f5f5f5;border:none;padding:12px 18px;font-size:16px;cursor:pointer;border-radius:6px 6px 0 0;transition:background 0.2s}
+    .tab-buttons > button:hover{background:#eee}
+    .tab-buttons > button.active{background:var(--green);color:#fff;font-weight:600}
+
+    .tab-content{display:none;padding:20px;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+    .tab-content.active{display:block}
+
+    video{display:block;max-width:100%;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.12);margin-bottom:14px}
+
+    /* --- Rays grid & collapsible styles --- */
+    .rays-grid{display:flex;flex-wrap:wrap;gap:20px}
+    .rays-section{flex:1 1 calc(33.333% - 20px);background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column}
+
+    .collapsible{background:var(--red);color:#fff;border:none;padding:12px 14px;text-align:left;font-size:1.05rem;cursor:pointer;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:space-between}
+    .collapsible:hover{background:var(--red-dark)}
+    .collapsible .caret{transition:transform .25s ease}
+    .collapsible[aria-expanded='true'] .caret{transform:rotate(90deg)}
+
+    .content{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s ease;padding:0 12px}
+    .content.open{padding:12px}
+    .content h4{margin:8px 0 6px;font-size:0.95rem}
+    .content video{margin-bottom:12px}
+
+    /* --- Responsive --- */
+    @media (max-width:980px){.rays-section{flex:1 1 calc(50% - 20px)}}
+    @media (max-width:680px){.rays-section{flex:1 1 100%}.title{font-size:26px;top:80px}.flag-banner{height:200px}}
   </style>
 </head>
 <body>
-  <div class="login-overlay" id="loginOverlay">
+  <!-- Login overlay -->
+  <div class="login-overlay" id="loginOverlay" aria-hidden="false">
     <div class="login-box">
       <h2>Please Login</h2>
-      <input type="text" id="username" placeholder="Username">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="validateLogin()">Login</button>
-      <p id="loginError" style="color: red; display: none;">Invalid credentials. Try again.</p>
+      <input id="username" type="text" placeholder="Username" aria-label="Username" />
+      <input id="password" type="password" placeholder="Password" aria-label="Password" />
+      <button id="loginBtn">Login</button>
+      <p id="loginError" style="color:red;display:none;margin-top:8px">Invalid credentials. Try again.</p>
     </div>
   </div>
-  <div class="flag-banner"></div>
+
+  <div class="flag-banner" aria-hidden="true"></div>
   <div class="title">Welcome to the National Integration Park</div>
-  <div class="container" id="mainContent" style="display: none;">
-    <div class="tab-buttons">
-      <button class="tab-link" onclick="openTab(event, 'home')">Home</button>
-      <button class="tab-link" onclick="openTab(event, 'about')">About</button>
-      <button class="tab-link" onclick="openTab(event, 'raysofhope')">Rays Of Hope</button>
+
+  <div class="container" id="mainContent" style="display:none">
+    <div class="tab-buttons" role="tablist">
+      <button class="tab-link" data-target="home" role="tab">Home</button>
+      <button class="tab-link" data-target="about" role="tab">About</button>
+      <button class="tab-link" data-target="raysofhope" role="tab">Rays Of Hope</button>
+      <button class="tab-link" data-target="culturalcentre" role="tab">Cultural Centre</button>
     </div>
-    <div id="home" class="tab-content">
+
+    <div id="home" class="tab-content" role="tabpanel">
       <h2>Home</h2>
       <p>What if a park could change how we see our country… and each other? The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
     </div>
-    <div id="about" class="tab-content">
+
+    <div id="about" class="tab-content" role="tabpanel">
       <h2>About</h2>
-      <p><strong>A Living Tribute to Bravery</strong><br>At Thunder Park & Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest. Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.</p>
-      <p><strong>Cultural Center - India in a Circle</strong><br>Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya. Taste. Touch. Listen. Learn.</p>
-      <p><strong>Not Just Exhibits but Real Conversations</strong><br>Our volunteers guide youth through stories of real people, real lands, and real struggles. Assumptions fall away. Respect takes root.</p>
-      <p>This Park is a reflection of the belief that unity can be built by knowing each other better. It’s a space that inspires empathy, patriotism, and purpose.</p>
+      <p><strong>A Living Tribute to Bravery</strong><br/>At Thunder Park &amp; Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest. Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.</p>
+      <p><strong>Cultural Center - India in a Circle</strong><br/>Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya. Taste. Touch. Listen. Learn.</p>
     </div>
-    <div id="raysofhope" class="tab-content">
-  <h2>Rays Of Hope</h2>
+
+    <div id="raysofhope" class="tab-content" role="tabpanel">
+      <h2 id="rays-title">Rays Of Hope</h2>
       <p>In the heart of The National Integration Park lies a place where we remember twenty-one of India's bravest souls - heroes who thought beyond themselves, and with unwavering courage, upheld the integrity of our nation. Welcome to <strong>Rays of Hope.</strong></p>
-  <div class="rays-grid">
 
-    <!-- 1947-48 -->
-    <div class="rays-section">
-      <button class="collapsible">1947-48</button>
-      <div class="content">
-        <video controls>
-          <source src="1947-48-background.mp4" type="video/mp4">
-        </video>
-        <h4>Major Somnath Sharma</h4>
-        <video controls>
-          <source src="somnath-sharma.mp4" type="video/mp4">
-        </video>
-        <h4>Naik Jadunath Singh</h4>
-        <video controls>
-          <source src="jadunath-singh.mp4" type="video/mp4">
-        </video>
-        <h4>2/Lt. Rama Raghoba Rane</h4>
-        <video controls>
-          <source src="rama-raghoba-rane.mp4" type="video/mp4">
-        </video>
-        <h4>CHM Piru Singh Shekhawat</h4>
-        <video controls>
-          <source src="piru-singh.mp4" type="video/mp4">
-        </video>
-        <h4>Lance Naik Karam Singh</h4>
-        <video controls>
-          <source src="karam-singh.mp4" type="video/mp4">
-        </video>
+      <div class="rays-grid">
+
+        <!-- 1947-48 -->
+        <div class="rays-section">
+          <button class="collapsible" aria-expanded="false">1947-48 <span class="caret">▶</span></button>
+          <div class="content" aria-hidden="true">
+            <video controls preload="none"><source src="1947-48-background.mp4" type="video/mp4"></video>
+            <h4>Major Somnath Sharma</h4>
+            <video controls preload="none"><source src="somnath-sharma.mp4" type="video/mp4"></video>
+            <h4>Naik Jadunath Singh</h4>
+            <video controls preload="none"><source src="jadunath-singh.mp4" type="video/mp4"></video>
+            <h4>2/Lt. Rama Raghoba Rane</h4>
+            <video controls preload="none"><source src="rama-raghoba-rane.mp4" type="video/mp4"></video>
+            <h4>CHM Piru Singh Shekhawat</h4>
+            <video controls preload="none"><source src="piru-singh.mp4" type="video/mp4"></video>
+            <h4>Lance Naik Karam Singh</h4>
+            <video controls preload="none"><source src="karam-singh.mp4" type="video/mp4"></video>
+          </div>
+        </div>
+
+        <!-- 1962 -->
+        <div class="rays-section">
+          <button class="collapsible" aria-expanded="false">1962 <span class="caret">▶</span></button>
+          <div class="content" aria-hidden="true">
+            <video controls preload="none"><source src="1962-background.mp4" type="video/mp4"></video>
+            <h4>Major Dhan Singh Thapa</h4>
+            <video controls preload="none"><source src="dhan-singh-thapa.mp4" type="video/mp4"></video>
+            <h4>Subedar Joginder Singh</h4>
+            <video controls preload="none"><source src="joginder-singh.mp4" type="video/mp4"></video>
+            <h4>Major Shaitan Singh</h4>
+            <video controls preload="none"><source src="shaitan-singh.mp4" type="video/mp4"></video>
+          </div>
+        </div>
+
+        <!-- 1965 -->
+        <div class="rays-section">
+          <button class="collapsible" aria-expanded="false">1965 <span class="caret">▶</span></button>
+          <div class="content" aria-hidden="true">
+            <video controls preload="none"><source src="1965-background.mp4" type="video/mp4"></video>
+            <h4>CQMH Abdul Hamid</h4>
+            <video controls preload="none"><source src="abdul-hamid.mp4" type="video/mp4"></video>
+            <h4>Lt. Col. Ardeshir Burzorji Tarapore</h4>
+            <video controls preload="none"><source src="tarapore.mp4" type="video/mp4"></video>
+          </div>
+        </div>
+
+        <!-- 1971 -->
+        <div class="rays-section">
+          <button class="collapsible" aria-expanded="false">1971 <span class="caret">▶</span></button>
+          <div class="content" aria-hidden="true">
+            <video controls preload="none"><source src="1971-background.mp4" type="video/mp4"></video>
+            <h4>Lance Naik Albert Ekka</h4>
+            <video controls preload="none"><source src="albert-ekka.mp4" type="video/mp4"></video>
+            <h4>Flying Officer Nirmal Jit Singh Sekhon</h4>
+            <video controls preload="none"><source src="nirmal-jit-singh.mp4" type="video/mp4"></video>
+            <h4>2/Lt. Arun Khetrapal</h4>
+            <video controls preload="none"><source src="arun-khetrapal.mp4" type="video/mp4"></video>
+            <h4>Major Hoshiar Singh</h4>
+            <video controls preload="none"><source src="hoshiar-singh.mp4" type="video/mp4"></video>
+          </div>
+        </div>
+
+        <!-- 1999 -->
+        <div class="rays-section">
+          <button class="collapsible" aria-expanded="false">1999 <span class="caret">▶</span></button>
+          <div class="content" aria-hidden="true">
+            <video controls preload="none"><source src="1999-background.mp4" type="video/mp4"></video>
+            <h4>Lt. Manoj Kumar Pandey</h4>
+            <video controls preload="none"><source src="manoj-pandey.mp4" type="video/mp4"></video>
+            <h4>Grenadier Yogendra Singh Yadav</h4>
+            <video controls preload="none"><source src="yogendra-yadav.mp4" type="video/mp4"></video>
+            <h4>Rifleman Sanjay Kumar</h4>
+            <video controls preload="none"><source src="sanjay-kumar.mp4" type="video/mp4"></video>
+            <h4>Capt. Vikram Batra</h4>
+            <video controls preload="none"><source src="vikram-batra.mp4" type="video/mp4"></video>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- 1962 -->
-    <div class="rays-section">
-      <button class="collapsible">1962</button>
-      <div class="content">
-        <video controls>
-          <source src="1962-background.mp4" type="video/mp4">
-        </video>
-        <h4>Major Dhan Singh Thapa</h4>
-        <video controls>
-          <source src="dhan-singh-thapa.mp4" type="video/mp4">
-        </video>
-        <h4>Subedar Joginder Singh</h4>
-        <video controls>
-          <source src="joginder-singh.mp4" type="video/mp4">
-        </video>
-        <h4>Major Shaitan Singh</h4>
-        <video controls>
-          <source src="shaitan-singh.mp4" type="video/mp4">
-        </video>
+    <div id="culturalcentre" class="tab-content" role="tabpanel">
+      <h2>Cultural Centre</h2>
+      <p>Showcasing diverse traditions, festivals, art forms and living heritage from India's border regions. Use the sections below to explore the richness of our border states.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:12px">
+        <div style="flex:1;min-width:220px">
+          <h3>Assam</h3>
+          <video controls preload="none"><source src="assam.mp4" type="video/mp4"></video>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <h3>Manipur</h3>
+          <video controls preload="none"><source src="manipur.mp4" type="video/mp4"></video>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <h3>Arunachal Pradesh</h3>
+          <video controls preload="none"><source src="arunachal.mp4" type="video/mp4"></video>
+        </div>
+         <div style="flex:1;min-width:220px">
+          <h3>Nagaland</h3>
+          <video controls preload="none"><source src="nagaland.mp4" type="video/mp4"></video>
+        </div>
+         <div style="flex:1;min-width:220px">
+          <h3>Jammu and Kashmir</h3>
+          <video controls preload="none"><source src="jandk.mp4" type="video/mp4"></video>
+        </div>
+         <div style="flex:1;min-width:220px">
+          <h3>Ladakh</h3>
+          <video controls preload="none"><source src="ladakh.mp4" type="video/mp4"></video>
+        </div>
+         <div style="flex:1;min-width:220px">
+          <h3>Mizoram</h3>
+          <video controls preload="none"><source src="mizoram.mp4" type="video/mp4"></video>
+        </div>
+        
       </div>
     </div>
 
-    <!-- 1965 -->
-    <div class="rays-section">
-      <button class="collapsible">1965</button>
-      <div class="content">
-        <video controls>
-          <source src="1965-background.mp4" type="video/mp4">
-        </video>
-        <h4>CQMH Abdul Hamid</h4>
-        <video controls>
-          <source src="abdul-hamid.mp4" type="video/mp4">
-        </video>
-        <h4>Lt. Col. Ardeshir Burzorji Tarapore</h4>
-        <video controls>
-          <source src="tarapore.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
+  </div> <!-- /.container -->
 
-    <!-- 1971 -->
-    <div class="rays-section">
-      <button class="collapsible">1971</button>
-      <div class="content">
-        <video controls>
-          <source src="1971-background.mp4" type="video/mp4">
-        </video>
-        <h4>Lance Naik Albert Ekka</h4>
-        <video controls>
-          <source src="albert-ekka.mp4" type="video/mp4">
-        </video>
-        <h4>Flying Officer Nirmal Jit Singh Sekhon</h4>
-        <video controls>
-          <source src="nirmal-jit-singh.mp4" type="video/mp4">
-        </video>
-        <h4>2/Lt. Arun Khetrapal</h4>
-        <video controls>
-          <source src="arun-khetrapal.mp4" type="video/mp4">
-        </video>
-        <h4>Major Hoshiar Singh</h4>
-        <video controls>
-          <source src="hoshiar-singh.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-    <!-- 1999 -->
-    <div class="rays-section">
-      <button class="collapsible">1999</button>
-      <div class="content">
-        <video controls>
-          <source src="1999-background.mp4" type="video/mp4">
-        </video>
-        <h4>Lt. Manoj Kumar Pandey</h4>
-        <video controls>
-          <source src="manoj-pandey.mp4" type="video/mp4">
-        </video>
-        <h4>Grenadier Yogendra Singh Yadav</h4>
-        <video controls>
-          <source src="yogendra-yadav.mp4" type="video/mp4">
-        </video>
-        <h4>Rifleman Sanjay Kumar</h4>
-        <video controls>
-          <source src="sanjay-kumar.mp4" type="video/mp4">
-        </video>
-        <h4>Capt. Vikram Batra</h4>
-        <video controls>
-          <source src="vikram-batra.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<style>
-.rays-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.rays-section {
-  flex: 1 1 calc(33.333% - 20px);
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.collapsible {
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  font-size: 1.1em;
-  border-radius: 10px 10px 0 0;
-}
-
-.collapsible:hover {
-  background-color: darkred;
-}
-
-.content {
-  display: none;
-  padding: 10px;
-}
-
-.content h4 {
-  margin: 8px 0 4px;
-  font-size: 0.95em;
-}
-
-.content video {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-</style>
-
-<script>
-document.querySelectorAll(".collapsible").forEach(button => {
-  button.addEventListener("click", () => {
-    const content = button.nextElementSibling;
-    content.style.display = (content.style.display === "block") ? "none" : "block";
-  });
-});
-</script>
-
-  </div>
   <script>
+    // Safe openTab: checks the target exists before touching classList
     function openTab(evt, tabId) {
-      const contents = document.getElementsByClassName("tab-content");
-      const buttons = document.getElementsByClassName("tab-link");
-      for (let content of contents) {
-        content.classList.remove("active");
+      if (!tabId) return;
+      const target = document.getElementById(tabId);
+      if (!target) {
+        console.warn('openTab: no element with id', tabId);
+        return;
       }
-      for (let btn of buttons) {
-        btn.classList.remove("active");
-      }
-      const activeTab = document.getElementById(tabId);
-      if (activeTab) {
-        activeTab.classList.add("active");
-        evt.currentTarget.classList.add("active");
-      }
-    }
-    function validateLogin() {
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-      if (username === 'guest' && password === 'park123') {
-        document.getElementById('loginOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        document.querySelector('.tab-link').click();
+
+      // hide all
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      // deactivate buttons
+      document.querySelectorAll('.tab-buttons > button, .tab-link').forEach(b => b.classList.remove('active'));
+
+      // show target
+      target.classList.add('active');
+
+      // mark clicked button active (if event present)
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
       } else {
-        document.getElementById('loginError').style.display = 'block';
+        // fallback: try to find button by data-target
+        const btn = document.querySelector('.tab-buttons button[data-target="' + tabId + '"]');
+        if (btn) btn.classList.add('active');
+      }
+
+      // if the Rays tab opened, ensure its title visibility resets (for scroll behavior)
+      if (tabId === 'raysofhope') {
+        const raysTitle = document.getElementById('rays-title');
+        if (raysTitle) raysTitle.classList.remove('hidden');
       }
     }
+
+    // Login handling
+    function validateLogin() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const overlay = document.getElementById('loginOverlay');
+      const main = document.getElementById('mainContent');
+      const err = document.getElementById('loginError');
+      if (user === 'guest' && pass === 'park123') {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden','true');
+        main.style.display = 'block';
+        // open default tab
+        openTab(null, 'home');
+      } else {
+        err.style.display = 'block';
+      }
+    }
+
+    // Collapsible setup
+    function setupCollapsibles() {
+      document.querySelectorAll('.collapsible').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          if (!content) return;
+          const isOpen = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', String(!isOpen));
+          if (!isOpen) {
+            content.classList.add('open');
+            // allow transition to measure
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.setAttribute('aria-hidden','false');
+          } else {
+            content.style.maxHeight = null;
+            content.classList.remove('open');
+            content.setAttribute('aria-hidden','true');
+          }
+        });
+      });
+    }
+
+    // Hide rays title on scroll
+    function setupRaysTitleScroll() {
+      const title = document.getElementById('rays-title');
+      if (!title) return;
+      let lastY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        // only hide when raysofhope tab is active
+        const raysTab = document.getElementById('raysofhope');
+        if (!raysTab || !raysTab.classList.contains('active')) return;
+        const currentY = window.scrollY;
+        if (currentY > 60) {
+          title.classList.add('hidden');
+        } else {
+          title.classList.remove('hidden');
+        }
+        lastY = currentY;
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      // wire up tab buttons to include data-target in case HTML uses direct onclick
+      document.querySelectorAll('.tab-buttons > button').forEach(btn => {
+        const target = btn.getAttribute('data-target') || btn.textContent.trim().toLowerCase().replace(/\s+/g,'');
+        btn.setAttribute('data-target', target);
+        btn.addEventListener('click', (e) => openTab(e, target));
+      });
+
+      // attach login button
+      const loginBtn = document.getElementById('loginBtn');
+      if (loginBtn) loginBtn.addEventListener('click', validateLogin);
+
+      setupCollapsibles();
+      setupRaysTitleScroll();
+
+      // ensure first tab is ready if mainContent shown
+      // don't auto-open tabs until user logs in; but if mainContent is visible for dev/testing, open default
+      const main = document.getElementById('mainContent');
+      if (main && getComputedStyle(main).display !== 'none') {
+        openTab(null, 'home');
+      }
+    });
   </script>
 </body>
 </html>
-
