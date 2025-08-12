@@ -18,8 +18,11 @@
     .login-box button{width:100%;padding:12px;margin-top:8px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;border:none;border-radius:6px;cursor:pointer}
 
     /* --- Banner/title --- */
-    .flag-banner{position:fixed;top:0;left:0;width:100%;height:300px;background:linear-gradient(to right,rgba(255,153,51,0.85),rgba(255,255,255,0.85),rgba(19,136,8,0.85));z-index:-1}
-    .title{position:fixed;top:100px;width:100%;text-align:center;font-size:36px;font-weight:700;color:#222;text-shadow:1px 1px 4px rgba(0,0,0,0.15)}
+    .flag-banner{position:fixed;top:0;left:0;width:100%;height:300px;background:linear-gradient(to right,rgba(255,153,51,0.85),rgba(255,255,255,0.85),rgba(19,136,8,0.85));z-index:-1;transition:transform .35s ease-in-out,opacity .35s ease-in-out}
+    .flag-banner.hidden{transform:translateY(-100%);opacity:0}
+
+    .title{position:fixed;top:100px;width:100%;text-align:center;font-size:36px;font-weight:700;color:#222;text-shadow:1px 1px 4px rgba(0,0,0,0.15);transition:transform .35s ease-in-out,opacity .35s ease-in-out}
+    .title.hidden{transform:translateY(-130%);opacity:0}
 
     /* --- Container & tabs --- */
     .container{margin-top:340px;padding:20px;max-width:1100px;margin-left:auto;margin-right:auto}
@@ -80,73 +83,31 @@
 <div id="home" class="tab-content active">
     <h2>Welcome to the National Integration Park</h2>
 
-    <button class="collapsible">Kalash (Information)</button>
-    <div class="content">
-        <p>The Kalash stands as a symbol of unity and heritage, representing the enduring spirit of the nation. 
-           It serves as a reminder of our cultural richness and resilience.</p>
+    <button class="collapsible" aria-expanded="false">Kalash (Information)</button>
+    <div class="content" aria-hidden="true">
+        <p>The Kalash stands as a symbol of unity. It contains soil from various battlefields in Jammu and Kashmir and Ladakh.</p>
     </div>
 
-    <button class="collapsible">Thunder Park (Information and Video)</button>
-    <div class="content">
-        <p>Thunder Park showcases the might of our defense forces and their unwavering commitment to the nation.</p>
+    <button class="collapsible" aria-expanded="false">Thunder Park (Information and Video)</button>
+    <div class="content" aria-hidden="true">
+        <p>Why do we call it a thunder park? The plates used to hang the medal prototype and their information are used for emergency landings or in thunderstorms over water. The plate though looks robust is light in weight with aluminum cover and thermocol inside, which helps our soldiers to float on water and save their lives.</p>
+        <p>The plates where we have hung the medal prototypes, along with their information, have a critical safety function — they are designed for emergency landings or during thunderstorms over water. Although the plate appears robust, it is surprisingly lightweight, made with an aluminum cover and thermocol inside. This design not only ensures durability but also enables the plate to float on water, helping our soldiers stay afloat and save their lives in challenging situations.
+These plates are a reminder that our defence forces are not just about large tanks, fighter planes, and big guns, but also about the small, ingenious details that quietly save lives. Here, we also showcase the peacetime gallantry awards — the Ashok Chakra, Kirti Chakra, and Shaurya Chakra — honouring extraordinary acts of bravery beyond the battlefield.</p>
         <video width="100%" controls>
             <source src="videos/thunderpark.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 
-    <button class="collapsible">Lest We Forget (Information and Video)</button>
-    <div class="content">
-        <p>"Lest We Forget" is a tribute to the brave souls who laid down their lives for our freedom and security.</p>
+    <button class="collapsible" aria-expanded="false">Lest We Forget (Information and Video)</button>
+    <div class="content" aria-hidden="true">
+        <p>‘Lest We Forget’ is a phrase borrowed from a well-known poem written by Rudyard Kipling in the 19th century, which means 'it should not be forgotten'. We say or write 'lest we forget' in commemorations to always remember the service and sacrifice of people who have served in wars, conflicts and peacekeeping operations. This Veerta Shilpa is dedicated to all the known and unknown military officers and soldiers, whose sacrifice, dedication, and valor enable us to live with pride. </p>
         <video width="100%" controls>
             <source src="videos/lestweforget.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 </div>
-
-<script>
-document.querySelectorAll(".collapsible").forEach(button => {
-    button.addEventListener("click", function() {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-});
-</script>
-
-<style>
-.collapsible {
-    background-color: orange;
-    color: black;
-    cursor: pointer;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    border-radius: 4px;
-    margin-top: 5px;
-}
-
-.active, .collapsible:hover {
-    background-color: white;
-}
-
-.content {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: darkorange;
-    margin-bottom: 8px;
-}
-</style>
 
     <div id="about" class="tab-content" role="tabpanel">
       <h2>About</h2>
@@ -394,7 +355,31 @@ document.querySelectorAll(".collapsible").forEach(button => {
         openTab(null, 'home');
       }
     });
+
+    // Global title hide-on-scroll (safe: checks element exists)
+    (function() {
+      let lastScroll = 0;
+      const pageTitleEl = document.querySelector('.title');
+      const flagBannerEl = document.querySelector('.flag-banner');
+      if (!pageTitleEl && !flagBannerEl) return;
+      window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > lastScroll && currentScroll > 50) {
+          if (pageTitleEl) pageTitleEl.classList.add('hidden');
+          if (flagBannerEl) flagBannerEl.classList.add('hidden');
+        } else {
+          if (pageTitleEl) pageTitleEl.classList.remove('hidden');
+          if (flagBannerEl) flagBannerEl.classList.remove('hidden');
+        }
+        lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+      });
+    })();
+
   </script>
 </body>
 </html>
+
+</body>
+</html>
+
 
