@@ -29,7 +29,7 @@
     .tab-buttons > button:hover{background:#eee}
     .tab-buttons > button.active{background:var(--green);color:#fff;font-weight:600}
 
-    .tab-content{display:none;padding:20px;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+    .tab-content{display:none;padding:20px;background: transparent;border-radius:0 0 8px 8px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
     .tab-content.active{display:block}
 
     video{display:block;max-width:100%;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.12);margin-bottom:14px}
@@ -76,10 +76,77 @@
       <button class="tab-link" data-target="culturalcentre" role="tab">Cultural Centre</button>
     </div>
 
-    <div id="home" class="tab-content" role="tabpanel">
-      <h2>Home</h2>
-      <p>What if a park could change how we see our country… and each other? The National Integration Park, a unique initiative by Aseem Foundation, is not just a space, it’s a movement. Inaugurated on 22nd December 2021 by General MM Naravane, this park invites every visitor to experience India’s spirit through stories, cultures, and connections.</p>
+    <!-- Home Tab -->
+<div id="home" class="tab-content active">
+    <h2>Welcome to the National Integration Park</h2>
+
+    <button class="collapsible">Kalash (Information)</button>
+    <div class="content">
+        <p>The Kalash stands as a symbol of unity and heritage, representing the enduring spirit of the nation. 
+           It serves as a reminder of our cultural richness and resilience.</p>
     </div>
+
+    <button class="collapsible">Thunder Park (Information and Video)</button>
+    <div class="content">
+        <p>Thunder Park showcases the might of our defense forces and their unwavering commitment to the nation.</p>
+        <video width="100%" controls>
+            <source src="videos/thunderpark.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <button class="collapsible">Lest We Forget (Information and Video)</button>
+    <div class="content">
+        <p>"Lest We Forget" is a tribute to the brave souls who laid down their lives for our freedom and security.</p>
+        <video width="100%" controls>
+            <source src="videos/lestweforget.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll(".collapsible").forEach(button => {
+    button.addEventListener("click", function() {
+        this.classList.toggle("active");
+        const content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
+});
+</script>
+
+<style>
+.collapsible {
+    background-color: orange;
+    color: black;
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.active, .collapsible:hover {
+    background-color: white;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: darkorange;
+    margin-bottom: 8px;
+}
+</style>
 
     <div id="about" class="tab-content" role="tabpanel">
       <h2>About</h2>
@@ -330,5 +397,4 @@
   </script>
 </body>
 </html>
-
 
