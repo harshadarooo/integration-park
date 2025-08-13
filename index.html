@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+g<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>National Integration Park</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to the National Integration Park</title>
   <style>
     /* --- Basic layout & typography --- */
     :root{--green:#28a745;--green-dark:#218838;--red:#d32f2f;--red-dark:#b71c1c}
-    body{font-family: 'Segoe UI', Arial, sans-serif;margin:0;background:#fafafa;color:#222}
+    body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#f9f9f9;color:#333}
 
     /* --- Login overlay --- */
     .login-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1000}
@@ -28,11 +28,11 @@
     .container{margin-top:340px;padding:20px;max-width:1100px;margin-left:auto;margin-right:auto}
 
     .tab-buttons{display:flex;gap:8px;border-bottom:2px solid #ddd;margin-bottom:18px}
-    .tab-buttons > button{flex:1;background:#f5f5f5;border:none;padding:12px 18px;font-size:16px;cursor:pointer;border-radius:6px 6px 0 0;transition:background 0.2s}
-    .tab-buttons > button:hover{background:#eee}
+    .tab-buttons > button{flex:1;background:#f5f5f5;border:none;padding:12px 18px;font-size:16px;cursor:pointer;border-radius:6px 6px 0 0;transition:background 0.2s, transform 0.2s}
+    .tab-buttons > button:hover{background:#eee;transform:translateY(-2px)}
     .tab-buttons > button.active{background:var(--green);color:#fff;font-weight:600}
 
-    .tab-content{display:none;padding:20px;background: transparent;border-radius:0 0 8px 8px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+    .tab-content{display:none;padding:20px;background:lightorange;border-radius:0 0 8px 8px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
     .tab-content.active{display:block}
 
     video{display:block;max-width:100%;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.12);margin-bottom:14px}
@@ -54,6 +54,10 @@
     /* --- Responsive --- */
     @media (max-width:980px){.rays-section{flex:1 1 calc(50% - 20px)}}
     @media (max-width:680px){.rays-section{flex:1 1 100%}.title{font-size:26px;top:80px}.flag-banner{height:200px}}
+
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none!important;animation:none!important}
+    }
   </style>
 </head>
 <body>
@@ -69,7 +73,7 @@
   </div>
 
   <div class="flag-banner" aria-hidden="true"></div>
-  <div class="title">Welcome to the National Integration Park</div>
+  <div class="title" id="pageTitle">Welcome to the National Integration Park</div>
 
   <div class="container" id="mainContent" style="display:none">
     <div class="tab-buttons" role="tablist">
@@ -80,37 +84,43 @@
     </div>
 
     <!-- Home Tab -->
-<div id="home" class="tab-content active">
-    <h2>Welcome to the National Integration Park</h2>
+    <div id="home" class="tab-content active" role="tabpanel" aria-labelledby="Home">
+      <h2>Welcome to the National Integration Park</h2>
+      <p>National Integration Park is a monument built to strengthen the <strong>unity and integrity of India.</strong> Aseem Foundation has created the National Integration Park, bringing together different states of India on one platform.</p>
 
-    <button class="collapsible" aria-expanded="false">Kalash (Information)</button>
-    <div class="content" aria-hidden="true">
-        <p>The Kalash stands as a symbol of unity. It contains soil from various battlefields in Jammu and Kashmir and Ladakh.</p>
-    </div>
+      <button class="collapsible" aria-expanded="false">Kalash (Information) <span class="caret">▶</span></button>
+      <div class="content" aria-hidden="true">
+          <p>When the construction of the National Integration Park began, members of Aseem Foundation visited various places in India where brave soldiers fought and displayed courage, bravery, and sacrifice. In this heroic journey, soil was collected from places like <strong>Samba, Naushera, Badgam, Rajouri, Rezang La, Siachen, and other war zones,</strong> and this Kalash was decorated, laying the foundation of the National Integration Park.</p>
+      </div>
 
-    <button class="collapsible" aria-expanded="false">Thunder Park (Information and Video)</button>
-    <div class="content" aria-hidden="true">
-        <p>Why do we call it a thunder park? The plates used to hang the medal prototype and their information are used for emergency landings or in thunderstorms over water. The plate though looks robust is light in weight with aluminum cover and thermocol inside, which helps our soldiers to float on water and save their lives.</p>
-        <p>The plates where we have hung the medal prototypes, along with their information, have a critical safety function — they are designed for emergency landings or during thunderstorms over water. Although the plate appears robust, it is surprisingly lightweight, made with an aluminum cover and thermocol inside. This design not only ensures durability but also enables the plate to float on water, helping our soldiers stay afloat and save their lives in challenging situations.
-These plates are a reminder that our defence forces are not just about large tanks, fighter planes, and big guns, but also about the small, ingenious details that quietly save lives. Here, we also showcase the peacetime gallantry awards — the Ashok Chakra, Kirti Chakra, and Shaurya Chakra — honouring extraordinary acts of bravery beyond the battlefield.</p>
-        <video width="100%" controls>
-            <source src="thunderpark.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+      <button class="collapsible" aria-expanded="false">Thunder Park (Information and Video) <span class="caret">▶</span></button>
+      <div class="content" aria-hidden="true">
+          <p>Why do we call it a thunder park? The plates used to hang the medal prototype and their information are used for emergency landings or in thunderstorms over water. The plate though looks robust is light in weight with aluminum cover and thermocol inside, which helps our soldiers to float on water and save their lives.</p>
+          <p>The plates where we have hung the medal prototypes, along with their information, have a critical safety function — they are designed for emergency landings or during thunderstorms over water. Although the plate appears robust, it is surprisingly lightweight, made with an aluminum cover and thermocol inside. This design not only ensures durability but also enables the plate to float on water, helping our soldiers stay afloat and save their lives in challenging situations.
+  These plates are a reminder that our defence forces are not just about large tanks, fighter planes, and big guns, but also about the small, ingenious details that quietly save lives. Here, we also showcase the peacetime gallantry awards — the Ashok Chakra, Kirti Chakra, and Shaurya Chakra — honouring extraordinary acts of bravery beyond the battlefield.</p>
+          <video width="100%" controls preload="none">
+              <source src="thunderpark.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+      </div>
 
-    <button class="collapsible" aria-expanded="false">Lest We Forget (Information and Video)</button>
-    <div class="content" aria-hidden="true">
-        <p>‘Lest We Forget’ is a phrase borrowed from a well-known poem written by Rudyard Kipling in the 19th century, which means 'it should not be forgotten'. We say or write 'lest we forget' in commemorations to always remember the service and sacrifice of people who have served in wars, conflicts and peacekeeping operations. This Veerta Shilpa is dedicated to all the known and unknown military officers and soldiers, whose sacrifice, dedication, and valor enable us to live with pride. </p>
-        <video width="100%" controls>
-            <source src="lestweforget.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+      <button class="collapsible" aria-expanded="false">Lest We Forget (Information and Video) <span class="caret">▶</span></button>
+      <div class="content" aria-hidden="true">
+          <p><strong>‘Lest We Forget’ </strong>is a phrase borrowed from a well-known poem written by Rudyard Kipling in the 19th century, which means <strong>'it should not be forgotten'.</strong> We say or write 'lest we forget' in commemorations to always remember the service and sacrifice of people who have served in wars, conflicts and peacekeeping operations. This <strong>Veerta Shilpa</strong> is dedicated to all the known and unknown military officers and soldiers, whose sacrifice, dedication, and valor enable us to live with pride. </p>
+          <video width="100%" controls preload="none">
+              <source src="lestweforget.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+      </div>
     </div>
-</div>
 
     <div id="about" class="tab-content" role="tabpanel">
       <h2>About</h2>
+      <p><strong>Aseem Foundation </strong>was established with a universal theme cutting across economic, social, religious or ideological differences to change the society. </p> 
+      <p>It resolves to bridge minds who want to change things for better through its work in the fields of <strong>Education, Entrepreneurship and Development.</strong> 
+We are a non-governmental organization committed for Developing and establishing connections between the people from the disturbed Border regions and from the rest of India.
+Volunteers of Aseem have been active since 2002 in the Kashmir region. The NGO was registered in the year 2010, and has been growing ever since. </p>
+      <p>For the past ten years, Aseem Foundation has made various efforts to make the National Integration Park a reality. In 2021, with the help of Gangotri Homes and Holidays, Aseem Foundation constructed this National Integration Park, which was inaugurated by the then Chief of Army Staff, General M.M. Naravane.</p>
       <p><strong>A Living Tribute to Bravery</strong><br/>At Thunder Park &amp; Rays of Hope, discover the lives of 21 Param Vir Chakra awardees - India’s bravest. Through augmented reality and sand sculptures, their courage comes alive to remind us what true heroism looks like.</p>
       <p><strong>Cultural Center - India in a Circle</strong><br/>Step into huts from across the country, from the houseboats of Kashmir to the living root bridges of Meghalaya. Taste. Touch. Listen. Learn.</p>
     </div>
@@ -217,37 +227,33 @@ These plates are a reminder that our defence forces are not just about large tan
           <h3>Arunachal Pradesh</h3>
           <video controls preload="none"><source src="arunachal.mp4" type="video/mp4"></video>
         </div>
-         <div style="flex:1;min-width:220px">
+        <div style="flex:1;min-width:220px">
           <h3>Nagaland</h3>
           <video controls preload="none"><source src="nagaland.mp4" type="video/mp4"></video>
         </div>
-         <div style="flex:1;min-width:220px">
+        <div style="flex:1;min-width:220px">
           <h3>Jammu and Kashmir</h3>
           <video controls preload="none"><source src="jandk.mp4" type="video/mp4"></video>
         </div>
-         <div style="flex:1;min-width:220px">
+        <div style="flex:1;min-width:220px">
           <h3>Ladakh</h3>
           <video controls preload="none"><source src="ladakh.mp4" type="video/mp4"></video>
         </div>
-         <div style="flex:1;min-width:220px">
+        <div style="flex:1;min-width:220px">
           <h3>Mizoram</h3>
           <video controls preload="none"><source src="mizoram.mp4" type="video/mp4"></video>
         </div>
-        
       </div>
     </div>
 
   </div> <!-- /.container -->
 
   <script>
-    // Safe openTab: checks the target exists before touching classList
+    // Tab switching that works with the current markup
     function openTab(evt, tabId) {
       if (!tabId) return;
       const target = document.getElementById(tabId);
-      if (!target) {
-        console.warn('openTab: no element with id', tabId);
-        return;
-      }
+      if (!target) { console.warn('openTab: no element with id', tabId); return; }
 
       // hide all
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -301,11 +307,10 @@ These plates are a reminder that our defence forces are not just about large tan
           this.setAttribute('aria-expanded', String(!isOpen));
           if (!isOpen) {
             content.classList.add('open');
-            // allow transition to measure
             content.style.maxHeight = content.scrollHeight + 'px';
             content.setAttribute('aria-hidden','false');
           } else {
-            content.style.maxHeight = null;
+            content.style.maxHeight = '0px';
             content.classList.remove('open');
             content.setAttribute('aria-hidden','true');
           }
@@ -317,7 +322,6 @@ These plates are a reminder that our defence forces are not just about large tan
     function setupRaysTitleScroll() {
       const title = document.getElementById('rays-title');
       if (!title) return;
-      let lastY = window.scrollY;
       window.addEventListener('scroll', () => {
         // only hide when raysofhope tab is active
         const raysTab = document.getElementById('raysofhope');
@@ -328,38 +332,55 @@ These plates are a reminder that our defence forces are not just about large tan
         } else {
           title.classList.remove('hidden');
         }
-        lastY = currentY;
       });
     }
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
-      // wire up tab buttons to include data-target in case HTML uses direct onclick
+      // wire up tab buttons
       document.querySelectorAll('.tab-buttons > button').forEach(btn => {
         const target = btn.getAttribute('data-target') || btn.textContent.trim().toLowerCase().replace(/\s+/g,'');
         btn.setAttribute('data-target', target);
         btn.addEventListener('click', (e) => openTab(e, target));
       });
 
-      // attach login button
+      // attach login button & Enter key for convenience
       const loginBtn = document.getElementById('loginBtn');
       if (loginBtn) loginBtn.addEventListener('click', validateLogin);
+      ['username','password'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('keydown', (e)=>{ if (e.key==='Enter') validateLogin(); });
+      });
 
       setupCollapsibles();
       setupRaysTitleScroll();
 
-      // ensure first tab is ready if mainContent shown
-      // don't auto-open tabs until user logs in; but if mainContent is visible for dev/testing, open default
+      // if mainContent is visible (dev), open default tab
       const main = document.getElementById('mainContent');
       if (main && getComputedStyle(main).display !== 'none') {
         openTab(null, 'home');
       }
+
+      // Self-tests (basic runtime checks in console)
+      (function selfTest(){
+        try{
+          console.group('Self-test');
+          console.assert(typeof openTab === 'function', 'openTab is defined');
+          console.assert(document.getElementById('home'), '#home exists');
+          console.assert(document.querySelectorAll('.tab-buttons > button').length >= 4, 'tab buttons present');
+          openTab(null,'about');
+          console.assert(document.getElementById('about').classList.contains('active'), 'about tab activates');
+          openTab(null,'home');
+          console.assert(document.getElementById('home').classList.contains('active'), 'home tab re-activates');
+          console.groupEnd();
+        } catch(e){ console.error('Self-test failed:', e); }
+      })();
     });
 
-    // Global title hide-on-scroll (safe: checks element exists)
+    // Global title & flag hide-on-scroll
     (function() {
       let lastScroll = 0;
-      const pageTitleEl = document.querySelector('.title');
+      const pageTitleEl = document.getElementById('pageTitle');
       const flagBannerEl = document.querySelector('.flag-banner');
       if (!pageTitleEl && !flagBannerEl) return;
       window.addEventListener('scroll', function () {
@@ -374,13 +395,11 @@ These plates are a reminder that our defence forces are not just about large tan
         lastScroll = currentScroll <= 0 ? 0 : currentScroll;
       });
     })();
-
   </script>
 </body>
 </html>
 
-</body>
-</html>
+
 
 
 
