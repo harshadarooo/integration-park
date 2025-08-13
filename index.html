@@ -28,11 +28,11 @@
     .container{margin-top:340px;padding:20px;max-width:1100px;margin-left:auto;margin-right:auto}
 
     .tab-buttons{display:flex;gap:8px;border-bottom:2px solid #ddd;margin-bottom:18px}
-    .tab-buttons > button{flex:1;background:#f5f5f5;border:none;padding:12px 18px;font-size:16px;cursor:pointer;border-radius:6px 6px 0 0;transition:background 0.2s, transform 0.2s}
+    .tab-buttons > button{flex:1;background:#f5f5f5;border:none;padding:12px 18px;font-size:16px;cursor:pointer;border-radius:6px 6px 0 0;transition:opacity 0.3s ease;}
     .tab-buttons > button:hover{background:#60a5fa;transform:translateY(-2px)}
     .tab-buttons > button.active{background:#3b82f6;color:#fff;font-weight:600}
 
-    .tab-content{display:none;padding:20px;background-color: white;border-radius: 10px;box-shadow: 0 4px 12px rgba(0,0,0,0.08)}
+    .tab-content{position: relative; z-index: 1; display:none;padding:20px;background-color: white;border-radius: 10px;box-shadow: 0 4px 12px rgba(0,0,0,0.08)}
     .tab-content.active{display:block}
 
     video{display:block;max-width:100%;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.12);margin-bottom:14px}
@@ -406,16 +406,16 @@ Volunteers of Aseem have been active since 2002 in the Kashmir region. The NGO w
     (function() {
       let lastScroll = 0;
       const pageTitleEl = document.getElementById('pageTitle');
-      const flagBannerEl = document.querySelector('.flag-banner');
+      //const flagBannerEl = document.querySelector('.flag-banner');
       if (!pageTitleEl && !flagBannerEl) return;
       window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        if (currentScroll > lastScroll && currentScroll > 50) {
+        if (currentScroll > 50) {
           if (pageTitleEl) pageTitleEl.classList.add('hidden');
-          if (flagBannerEl) flagBannerEl.classList.add('hidden');
+          //if (flagBannerEl) flagBannerEl.classList.add('hidden');
         } else {
           if (pageTitleEl) pageTitleEl.classList.remove('hidden');
-          if (flagBannerEl) flagBannerEl.classList.remove('hidden');
+         // if (flagBannerEl) flagBannerEl.classList.remove('hidden');
         }
         lastScroll = currentScroll <= 0 ? 0 : currentScroll;
       });
@@ -423,6 +423,16 @@ Volunteers of Aseem have been active since 2002 in the Kashmir region. The NGO w
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
